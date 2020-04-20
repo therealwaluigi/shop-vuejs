@@ -2,7 +2,7 @@
     <div>
         <router-link to="/warenkorb">Zum Warenkorb</router-link>
         <h1>Produkte</h1>
-        <div class="products">
+        <div class="products" v-if="products">
             <ProductCard v-for="product in products" :key="product.id" :id="product.id" :name="product.name" :img="product.image" :price="product.price"></ProductCard>
         </div>
     </div>
@@ -19,7 +19,24 @@ export default {
     },
     data() {
         return {
+            added: false,
             products: null
+        }
+    },
+    methods: {
+        addToCart: function () {
+            axios({
+                method: 'post',
+                url: 'http://localhost:8000/cart',
+                data: {
+                    product_id: this.id
+                }
+            }).then(() => {
+                this.added = true;
+                setTimeout(() => this.added = false, 1000)
+            }, (error) => {
+                console.log(error);
+            });
         }
     },
     mounted() {

@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <img :src="this.img" alt="Denim Jeans" style="width:100%">
-        <h2>{{ name }}</h2>
+        <router-link :to="'/produkt/'+this.id"><h2>{{ name }}</h2></router-link>
         <p class="price">{{ price }} CHF</p>
         <p><button :class="{ 'success': added }" v-on:click="addToCart()">Zum Warenkorb hinzufügen</button></p>
     </div>
@@ -80,5 +80,8 @@ export default {
     }
     .card button:hover {
         opacity: 0.7;
+    }
+    a {
+        color: #42b983;
     }
 </style>

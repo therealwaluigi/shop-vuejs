@@ -3,6 +3,7 @@ import App from './App.vue'
 import VueRouter from 'vue-router';
 import Products from "./components/Products";
 import Cart from "./components/Cart";
+import ProductDetail from "./components/ProductDetail";
 
 Vue.use(VueRouter);
 Vue.config.productionTip = false;
@@ -16,7 +17,12 @@ const router = new VueRouter({
         {
             path: '/warenkorb',
             component: Cart
+        },
+        {
+            path: '/produkt/:id',
+            component: ProductDetail
         }
+
     ],
     mode: 'history'
 });
